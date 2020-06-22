@@ -19,6 +19,8 @@ const CreateProfile = props => {
         linkedin: '' 
     });
 
+    const [displaySocialInputs, toggleSocialInputs] = useState(false);
+
     const {
         company,
         website,
@@ -147,7 +149,7 @@ const CreateProfile = props => {
           </button>
                     <span>Optional</span>
                 </div>
-                {displaySocialInputs && (
+                {
                     <Fragment>
                         <div className='form-group social-input'>
                             <i className='fab fa-twitter fa-2x' />
@@ -200,7 +202,7 @@ const CreateProfile = props => {
                             />
                         </div>
                     </Fragment>
-                )}
+                }
                 <input type='submit' className='btn btn-primary my-1' />
                 <Link className='btn btn-light my-1' to='/dashboard'>
                     Go Back
