@@ -2,8 +2,9 @@ import React, { Fragment, useState } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import { createProfile } from '../../actions/profile';
 
-const CreateProfile = props => {
+const CreateProfile = ({ createProfile, history }) => {
     const [formData, setFormData] = useState({
         company: '',
         website: '',
@@ -41,7 +42,7 @@ const CreateProfile = props => {
 
     const onSubmit = e => {
         e.preventDefault();
-        // createProfile(formData, history);
+        createProfile(formData, history);
     };
 
     return (
@@ -149,7 +150,7 @@ const CreateProfile = props => {
           </button>
                     <span>Optional</span>
                 </div>
-                {
+                {displaySocialInputs && (
                     <Fragment>
                         <div className='form-group social-input'>
                             <i className='fab fa-twitter fa-2x' />
@@ -202,7 +203,7 @@ const CreateProfile = props => {
                             />
                         </div>
                     </Fragment>
-                }
+                )}
                 <input type='submit' className='btn btn-primary my-1' />
                 <Link className='btn btn-light my-1' to='/dashboard'>
                     Go Back
@@ -213,7 +214,7 @@ const CreateProfile = props => {
 }
 
 CreateProfile.propTypes = {
-
+    createProfile: PropTypes.func.isRequired,
 }
 
-export default CreateProfile
+export default connect(null, { createProfile })(withRouter(CreateProfile));
